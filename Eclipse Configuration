@@ -24,9 +24,9 @@ JavaWEB开发目录结构
 2.同级的src下创建类Person
 3.将编译的类class文件复制到classes文件夹中
 3.同级目录创建JSP文件
-  <%@page import="com.app.Person"%>   //导入类
+  <%@page import="com.app.Person"%>   //导入类  
 	<% 
-		Person person = new Person();
+		Person person = new Person(); //使用alt+/可以自动导入类
 		System.out.print(person.getPersonInfo());
 	%>
   
