@@ -2,7 +2,12 @@ eclipse配置：
 1.添加tomcat环境
   打开Eclipse，单击“Window”菜单，选择下方的“Preferences”，选择Server Runtime Environment添加tomcat环境
 2.添加build path，右击项目，build path->Java Build Path->Libraries->Add Library
-3.配置Default output folder，右击项目，build path->Java Build Path->Source->Default output folder=>WebContent/WEB-INF/classes
+3.配置Default output folder，右击项目，build path->Java Build Path->Source->Default output folder=>WebContent/WEB-INF/classes  
+  用于将编译好的class文件放置于classes文件夹中
+4.配置tomcat中的context，进入\conf\Catalina\localhost中创建一个xml文件，例如：paths.xml，格式如下：
+  <Context path="/" docBase="E:\\WebApp\\WebContent" reloadable="true"/>
+  用于指向Web应用的文件路径
+	
 
 
 JavaWEB开发目录结构
