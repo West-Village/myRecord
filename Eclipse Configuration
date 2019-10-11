@@ -2,3 +2,28 @@ eclipse配置：
 1.添加tomcat环境
   打开Eclipse，单击“Window”菜单，选择下方的“Preferences”，选择Server Runtime Environment添加tomcat环境
 2.添加build path，右击项目，build path->Java Build Path->Libraries->Add Library
+3.配置Default output folder，右击项目，build path->Java Build Path->Source->Default output folder=>WebContent/WEB-INF/classes
+
+
+JavaWEB开发目录结构
+1.结构
+-WebContent
+    -WEB-INF
+        -classes(编译后class文件必须放在该目录下)
+        -lib
+        -web.xml
+    html...
+    jsp...
+    image...
+    
+2.同级的src下创建类Person
+3.将编译的类class文件复制到classes文件夹中
+3.同级目录创建JSP文件
+  <%@page import="com.app.Person"%>   //导入类
+	<% 
+		Person person = new Person();
+		System.out.print(person.getPersonInfo());
+	%>
+  
+
+    
