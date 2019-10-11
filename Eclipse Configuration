@@ -1,0 +1,4 @@
+eclipse配置：
+1.添加tomcat环境
+  打开Eclipse，单击“Window”菜单，选择下方的“Preferences”，选择Server Runtime Environment添加tomcat环境
+2.添加build path，右击项目，build path->Java Build Path->Libraries->Add Library
