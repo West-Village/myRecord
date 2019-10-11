@@ -4,3 +4,22 @@ Servlet简介：
     -创建并返回基于客户请求的动态HTML页面
     -创建可嵌入到现有HTML页面中的部分HTML页面（HTML片段）
     -与其他服务器资源（如数据库或基于JAVA的应用程序）进行通信
+    
+Servlet的HelloWorld
+1.创建一个servlet接口的实现类
+  public class HelloServlet implements Servlet
+2.在web.xml文件中配置和映射这个Servlet
+  <!-- 配置Servlet -->
+		<servlet>
+      <!-- Servlet 注册名-->
+			<servlet-name>helloServlet</servlet-name>  
+      <!-- Servlet 全类名-->
+			<servlet-class>com.ai.HelloServlet</servlet-class>		
+		</servlet>
+		<!-- 映射Servlet -->
+		<servlet-mapping>
+			<servlet-name>helloServlet</servlet-name>
+      <!-- 映射具体的访问路径-->
+			<url-pattern>/hello</url-pattern>
+		</servlet-mapping>
+    
