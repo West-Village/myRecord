@@ -4,34 +4,42 @@ Servlet简介：
     -创建并返回基于客户请求的动态HTML页面
     -创建可嵌入到现有HTML页面中的部分HTML页面（HTML片段）
     -与其他服务器资源（如数据库或基于JAVA的应用程序）进行通信
-    
+-------------------------------------------------------------------------------------------------------------   
 Servlet的HelloWorld
 1.创建一个servlet接口的实现类
   public class HelloServlet implements Servlet
 2.在web.xml文件中配置和映射这个Servlet
   <!-- 配置Servlet -->
-		<servlet>
-      <!-- Servlet 注册名-->
-			<servlet-name>helloServlet</servlet-name>  
-      <!-- Servlet 全类名-->
-			<servlet-class>com.ai.HelloServlet</servlet-class>		
-		</servlet>
+  	<servlet>
+		<!-- Servlet 注册名-->
+     		<servlet-name>helloServlet</servlet-name>  
+     		<!-- Servlet 全类名-->
+		<servlet-class>com.ai.HelloServlet</servlet-class>
+		<!-- 可以指定Servlet被创建的时机-->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 		<!-- 映射Servlet -->
 		<servlet-mapping>
-			<servlet-name>helloServlet</servlet-name>
-      <!-- 映射具体的访问路径-->
-			<url-pattern>/hello</url-pattern>
-		</servlet-mapping>
+		<servlet-name>helloServlet</servlet-name>
+      		<!-- 映射具体的访问路径-->
+		<url-pattern>/hello</url-pattern>
+	</servlet-mapping>
+------------------------------------------------------------------------------------------------------------- 
 
 Servlet容器：运行Servlet、JSP、Filter等软件环境（Servlet容器可以创建和销毁对象）
 1.可以创建servlet并调用Servlet的相关生命周期
 2.JSP、Filter、Listener、Tag....
- 
+------------------------------------------------------------------------------------------------------------- 
+
 Servlet生命周期的方法：以下方法均由Servlet容器负责调用，无需手动调用
 1.构造器:只被调用一次，第一次请求servlet时创建servlet的实例，调用构造器(单实例)
 2.init方法:只被调用一次，在创建好实例后立即被调用，用于初始化当前Servlet
 3.service:被多次调用，每次请求都会调用service方法，实际用于响应请求
 4.destory:只被调用一次，用于释放当前Servlet所占用的资源
+5.<load-on-startup>1</load-on-startup>
+配置在servlet节点中，可以指定Servlet被创建的时机，若为负数，则在第一次请求时被创建，若为0或正数则在当前WEB应用被Servlet容器加载是创建实例，
+且数值越小越早被创建
+
 
 以下为例：
 package com.ai;
@@ -88,3 +96,37 @@ service
 service
 service
 destory(关闭tomcat)
+------------------------------------------------------------------------------------------------------------- 
+
+Servlet容器响应客户请求的过程
+
+1.Servlet引擎检查是否已经装载并创建了该Servlet的实例对象，若是直接执行第4步，如果不是则执行第2步
+2.装载并创建该Servlet的一个实例对象：调用该Servlet的构造器
+3.调用Servlet实例对象的init()方法对Servlet对象进行初始化
+4.创建一个用于封装请求的ServletRequest对象和一个代表响应ServletResponse对象，然后调用Servlet的service()方法并将请求和响应对象作为参数传递
+5.WEB应用程序被停止或重新启动之前，Servlet引擎将卸载Servlet，并在卸载之前调用Servlet的destory()方法
+------------------------------------------------------------------------------------------------------------- 
+
+Servlet映射的细节
+1.同一个Servlet可以被映射到多个URL上，/hello和/hello2都可以访问Servlet
+</servlet>
+	<!-- 映射Servlet -->
+	<servlet-mapping>
+	<servlet-name>helloServlet</servlet-name>
+      	<!-- 映射具体的访问路径-->
+	<url-pattern>/hello</url-pattern>
+</servlet-mapping>
+</servlet>
+	<!-- 映射Servlet -->
+	<servlet-mapping>
+	<servlet-name>helloServlet</servlet-name>
+      	<!-- 映射具体的访问路径-->
+	<url-pattern>/hello2</url-pattern>
+</servlet-mapping>
+
+2.可以使用通配符,*.html和/*这种格式才合法
+</servlet>
+	<servlet-mapping>
+		<servlet-name>helloServlet</servlet-name>
+	<url-pattern>*.html</url-pattern>
+</servlet-mapping>
