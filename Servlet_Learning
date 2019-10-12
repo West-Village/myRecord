@@ -40,7 +40,6 @@ Servlet生命周期的方法：以下方法均由Servlet容器负责调用，无
 配置在servlet节点中，可以指定Servlet被创建的时机，若为负数，则在第一次请求时被创建，若为0或正数则在当前WEB应用被Servlet容器加载是创建实例，
 且数值越小越早被创建
 
-
 以下为例：
 package com.ai;
 import java.io.IOException;
@@ -128,5 +127,24 @@ Servlet映射的细节
 </servlet>
 	<servlet-mapping>
 		<servlet-name>helloServlet</servlet-name>
-	<url-pattern>*.html</url-pattern>
+		<url-pattern>*.html</url-pattern>
 </servlet-mapping>
+------------------------------------------------------------------------------------------------------------- 
+
+ServletConfig:
+封装了Servlet配置信息并且可以获取ServletContext对象
+Method Summary:
+getInitParameter(String name)  //根据名字获取初始化参数值
+getInitParameterNames()      //获取参数名字  返回enumerate值 例：Enumeration<String> names = servletConfig.getInitParameterNames();
+getServletContext()
+getServletName()         //获取servlet名称   
+
+格式：（必须在<load-on-startup>1</load-on-startup>之上）
+<!-- 配置Servlet的初始化参数 -->
+<init-param>
+	<!-- 参数名 -->
+	<param-name>user</param-name>
+	<!-- 参数值 -->
+	<param-value>root</param-value>
+ </init-param>
+ ------------------------------------------------------------------------------------------------------------- 
