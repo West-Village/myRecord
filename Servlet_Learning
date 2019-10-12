@@ -148,3 +148,36 @@ getServletName()         //获取servlet名称
 	<param-value>root</param-value>
  </init-param>
  ------------------------------------------------------------------------------------------------------------- 
+
+ServletContext:（相当于全局参数，而<init-param>为servlet的初始化参数为局部参数）
+1.可以有ServletConfig获取
+2.该对象代表当前WEB应用：可以认为是当前WEb应用的大管家，可以获取当前WEB应用的各种信息
+web.xml配置:
+<!-- 配置当前WEB应用的初始化参数 -->
+<context-param>
+	<param-name>driver</param-name>
+	<param-value>com.mysql.jdbc.Driver</param-value>
+</context-param>	
+代码实现：
+@Override
+public void init(ServletConfig servletconfig) throws ServletException{
+	System.out.println("init");
+	//获取ServletContext对象
+	ServletContext servletContext = servletconfig.getServletContext();
+	String dirver = servletContext.getInitParameter("driver");
+	System.out.println("driver："+dirver);
+
+	Enumeration<String> names = servletContext.getInitParameterNames();
+	While(names.hasMoreElements());{
+		String name = names.nextElement();
+		System.out.println("-->"+name);
+	}
+}
+ ------------------------------------------------------------------------------------------------------------- 
+ 
+ 获取当前WEB应用资源在服务器上的绝对路径，
+ getRealPath(String path)
+ String realPath = servletContext.getRealPath("/index.jsp");
+ 
+ 获取当前WEb应用的名称
+ getContextPath()
