@@ -176,8 +176,13 @@ public void init(ServletConfig servletconfig) throws ServletException{
  ------------------------------------------------------------------------------------------------------------- 
  
  获取当前WEB应用资源在服务器上的绝对路径，
- getRealPath(String path)
+ Method: getRealPath(String path)
  String realPath = servletContext.getRealPath("/index.jsp");
  
  获取当前WEb应用的名称
- getContextPath()
+ Method: getContextPath()
+ 
+ 获取当前WEB应用的某一文件对应的输入流
+ Method: getResourceAsStream(String path): path的/为相对于当前WEB应用的根目录
+ InputStream is = servletContext.getResourceAsStream("/WEB-INFO/classes/jdbc.properties");
+ 
