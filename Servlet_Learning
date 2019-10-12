@@ -173,7 +173,7 @@ public void init(ServletConfig servletconfig) throws ServletException{
 		System.out.println("-->"+name);
 	}
 }
- ------------------------------------------------------------------------------------------------------------- 
+------------------------------------------------------------------------------------------------------------- 
  
  获取当前WEB应用资源在服务器上的绝对路径，
  Method: getRealPath(String path)
@@ -185,4 +185,16 @@ public void init(ServletConfig servletconfig) throws ServletException{
  获取当前WEB应用的某一文件对应的输入流
  Method: getResourceAsStream(String path): path的/为相对于当前WEB应用的根目录
  InputStream is = servletContext.getResourceAsStream("/WEB-INFO/classes/jdbc.properties");
- 
+  ------------------------------------------------------------------------------------------------------------- 
+  GET和POST请求
+  1.使用GET方式传递参数
+  在浏览器地址栏输入某个URL地址或单击网页的一个超链接时，浏览器发出get请求
+  如果网页的<form>表单元素method为get，提交表单的时候也为请求方法
+  使用GET请求方式给WEB服务器传递参数是？values1=xxx&values2=xxx
+  使用GET传参的数据量一般限制在1kb以下
+  
+  2.使用POST方式传递参数：
+  POST请求主要用于提交form表单数据，method为POST
+  POST方法将各个表单字段元素及其数据作为HTTP的消息实体内容发送给WEB服务器，传输量比GET请求大得多
+  
+  
