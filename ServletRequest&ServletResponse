@@ -25,7 +25,7 @@
     >Enmueration getParameterNames():返回参数名对应的Enumeration对象
      
     >Map getParameterMap(): 返回请求参数的键值对：  key:参数名  value:参数值  String 数组类型
-
+-------------------------------------------------------------------------------------------------------
 HttpServletRequest 是ServletRequest的子接口，针对HTTP请求所定义，里面包含了大了获取HTTP请求相关的方法
 获取请求的URI：
     >HttpServletRequest HttpServletRequest = (HttpServletRequest) request;
@@ -39,3 +39,11 @@ HttpServletRequest 是ServletRequest的子接口，针对HTTP请求所定义，�
     
 获取请求的Servlet的映射路径：
     >String servletPath = HttpServletRequest.servletPath();  
+-------------------------------------------------------------------------------------------------------
+ServletResponse:封装了响应信息，可以使用该接口的方式实现
+    >*getWriter：返回PrintWriter对象，调用该对象的print()方法，并把参数直接打印到客户的浏览器上
+    >设置响应的内容类型；response.setContentType("application/msword")
+    >void sendRedirect(String location):请求重定向（此方法在HttpServletResponse中定义）
+    >
+    >
+    >
