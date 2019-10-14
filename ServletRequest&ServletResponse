@@ -1,0 +1,13 @@
+1.如何在Servlet中获取请求信息
+    Servlet的service()方法用于应答请求；因为每次请求都会调用service方法
+        public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException{
+		        System.out.println("service");
+	  }
+    ServletRequest:封装请求信息，可以从中获取到任何请求信息
+    ServletResponse：封装响应信息，如果想给用户什么响应，具体可以使用接口的方法进行实现
+    两者接口的实现类都是服务给与实现的，并在服务器调用service方法是传入
+    
+2.ServletRequest
+方法：
+    >String getParameter(String name)：根据请求参数返回请求值
+    >Map 
