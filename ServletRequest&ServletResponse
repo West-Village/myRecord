@@ -1,13 +1,41 @@
 1.如何在Servlet中获取请求信息
     Servlet的service()方法用于应答请求；因为每次请求都会调用service方法
         public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException{
-		        System.out.println("service");
+            System.out.println("service");
 	  }
     ServletRequest:封装请求信息，可以从中获取到任何请求信息
     ServletResponse：封装响应信息，如果想给用户什么响应，具体可以使用接口的方法进行实现
     两者接口的实现类都是服务给与实现的，并在服务器调用service方法是传入
-    
+----------------------------------------------------------------------------------------------------------------------------
+
 2.ServletRequest
-方法：
-    >String getParameter(String name)：根据请求参数返回请求值
-    >Map 
+获取请求参数方法：
+    >String getParameter(String name)：根据请求参数返回请求值  
+    	例:String user = request.getParameter("user");
+	   String password = request.getParameter("password");
+	若请求参数有多个值，该方法只能获取到第一个提交的值  
+	
+    >String[] getParameterValues(String name)
+    	例:String[] interestings = request.getParameterValues("interesting");
+	       for(String interesting: interestings){
+	           System.out.println("--> "+interesting);
+	   }
+	若请求参数有多个值，该方法可以获取   
+
+    >Enmueration getParameterNames():返回参数名对应的Enumeration对象
+     
+    >Map getParameterMap(): 返回请求参数的键值对：  key:参数名  value:参数值  String 数组类型
+
+HttpServletRequest 是ServletRequest的子接口，针对HTTP请求所定义，里面包含了大了获取HTTP请求相关的方法
+获取请求的URI：
+    >HttpServletRequest HttpServletRequest = (HttpServletRequest) request;
+     String requestURI = HttpServletRequest.getRequestURI();
+     
+获取请求的方式：
+    >String method = HttpServletRequest.getMethod();
+   
+获取请求参数对应的字符串：？后的（对GET方法而言，若干是POST方法取出来的值为null）
+    >String queryString = HttpServletRequest.queryString();
+    
+获取请求的Servlet的映射路径：
+    >String servletPath = HttpServletRequest.servletPath();  
